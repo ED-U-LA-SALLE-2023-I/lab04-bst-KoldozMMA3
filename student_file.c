@@ -1,24 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+//Definimos variables
 struct node {
     int value;
     struct node *left;
     struct node *right;
 };
+// Función para crear un nuevo nodo
+struct node* new_node(int value) {
+    struct node* node = (struct node*)malloc(sizeof(struct node));
+    node->value = value;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
 
-struct node *root = NULL;
-
-// función: insert, agrega elementos en un árbol con puntero inicial root
-void insert(int data) {
-   struct node tempNode/*punto a la memoria/ = (struct node*) malloc(sizeof(struct node));
-   struct node *actual;
-   struct node *padre;
-
-   //agregamos los valores en node
-    tempNode-> value=data;
-    actual-> left == NULL;
-    padre-> right== NULL;
+// Insertamos un nuevo nodo en el árbol
+struct node* insert(struct node* raiz, int value) {
+    if (raiz == NULL) {
+        return new_node(value);
+    }
+    if (value < raiz->value) {
+        raiz->left = insert(raiz->left, value);
+    } else {
+        raiz->right = insert(raiz->right, value);
+    }
+    return raiz;
+}
 
    /**
    Código
