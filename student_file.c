@@ -38,7 +38,14 @@ void preorden_recorrido(struct node* raiz) {
         preorden_recorrido(raiz->right);
     }
 }
-
+// Recorrido Postorden
+void postorden_recorrido(struct node* raiz) {
+    if (raiz != NULL) {
+        postorden_recorrido(raiz->left);
+        postorden_recorrido(raiz->right);
+        printf("%i ", raiz->value);
+    }
+}
 int main() {
    int i;
    int array[9] = {50,30,24,5,28,45,98,52,60};
