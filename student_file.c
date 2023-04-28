@@ -46,13 +46,36 @@ void postorden_recorrido(struct node* raiz) {
         printf("%i ", raiz->value);
     }
 }
+
+// Función principal
+char* bst_fun(char* nodes) {
+    struct node* raiz = NULL;
+    char* token = strtok(nodes, " ");
+    while (token != NULL) {
+        int value = atoi(token);
+        raiz = insert(raiz, value);
+        token = strtok(NULL, " ");
+    }
+
+    // Imprimir el árbol en Preorden
+    printf("Recorrido Preorden: ");
+    preorden_recorrido(raiz);
+    printf("\n");
+
+    // Imprimir el árbol en Postorden
+    printf("Recorrido Postorden: ");
+    postorden_recorrido(raiz);
+    printf("\n");
+
+    return "Árbol impreso en Preorden y Postorden";
+
 int main() {
-   int i;
-   int array[9] = {50,30,24,5,28,45,98,52,60};
+    char nodes[100];
+    printf("Ingrese los números del árbol separados por espacios: ");
+    fgets(nodes, sizeof(nodes), stdin);
+    nodes[strcspn(nodes, "\n\n")] = '\0'; // Eliminar el salto de línea final
 
-   for(i = 0; i < 8; i++)
-      insert(array[i]);
+    bst_fun(nodes);
 
-    printf("\nInorder: ");
-    inorder_recorrido(root);
+    return 0;
 }
